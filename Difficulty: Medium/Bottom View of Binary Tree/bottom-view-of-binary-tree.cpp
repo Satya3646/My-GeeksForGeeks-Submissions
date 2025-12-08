@@ -19,7 +19,7 @@ class Solution {
         vector <int> ans;
         if(!root)
             return ans;
-        map <int, int> mp;
+        map <int, int> mp; // X-coordinate to node-value mapping
         queue <pair <Node*, int>> q;
         q.push({root, 0});
         while(!q.empty())
@@ -30,7 +30,7 @@ class Solution {
                 Node* node = q.front().first;
                 int x = q.front().second;
                 q.pop();
-                mp[x] = node->data;
+                mp[x] = node->data; // Update map without any condition since bfs ensures that y always increases as we traverse.
                 if(node->left)
                     q.push({node->left, x-1});
                 if(node->right)
