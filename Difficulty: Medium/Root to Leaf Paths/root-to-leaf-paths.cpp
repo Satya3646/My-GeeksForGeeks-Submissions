@@ -20,17 +20,15 @@ class Solution {
     {
         if(!root)
             return;
-        if(!root->left && !root->right)
-        {
-            currPath.push_back(root->data);
+        currPath.push_back(root->data); // Add the current node to the path.
+        if(!root->left && !root->right) // If the node is a leaf then add the total path to paths.
             paths.push_back(currPath);
-            currPath.pop_back();
-            return;
+        else // else traverse deeper into the tree.
+        {
+            dfs(root->left, currPath, paths);
+            dfs(root->right, currPath, paths);
         }
-        currPath.push_back(root->data);
-        dfs(root->left, currPath, paths);
-        dfs(root->right, currPath, paths);
-        currPath.pop_back();
+        currPath.pop_back(); // Pop the pushed element to backtrack.
     }
     
     vector <vector <int>> Paths(Node* root)
