@@ -19,8 +19,8 @@ class Solution {
         vector <int> arr;
         if(!root)
             return {-1};
-        // We will serialize the tree is BFS order, accounting for the null nodes in between.
-        // This way we will get the string is level by level order.
+        // We will serialize the tree is BFS order, accounting for the null nodes in between as '-1'.
+        // This way we will get the vector is built in level by level order.
         queue <Node*> q; // BFS queue.
         q.push(root);
         while(!q.empty())
@@ -55,7 +55,7 @@ class Solution {
         {
             Node* parent = q.front();
             q.pop();
-            if(arr[indx] != -1) // if stream has not ended and the extracted value is not null the add it to the tree and queue.
+            if(arr[indx] != -1) // if current node is not a null node attach it to the tree and push to queue to build further.
             {    
                 parent->left = new Node(arr[indx]);
                 q.push(parent->left);
